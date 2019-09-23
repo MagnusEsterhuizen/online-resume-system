@@ -2,7 +2,7 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 ## Installation Instructions
 
-* Install node.js and npm
+### * Install node.js and npm
 ### `apt-get install nodejs`
 
 * Create a new React App
