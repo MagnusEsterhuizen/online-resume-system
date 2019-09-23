@@ -2,55 +2,63 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 ## Installation Instructions
 
-### * Install node.js and npm
-### `apt-get install nodejs`
+### Install node.js and npm
 
-* Create a new React App
-### `npx create-react-app online-resume-system`
+#### * `apt-get install nodejs`
 
-* Clone repository
-### `git clone https://github.com/MagnusEsterhuizen/Online-Resume-System.git`
+### Create a new React App
 
-* Install Node.js dependencies
-### `npm install @date-io/moment`
+#### * `npx create-react-app online-resume-system`
 
-### `npm install @material-ui/core`
+### Clone repository
 
-### `npm install @material-ui/icons`
+#### * `git clone https://github.com/MagnusEsterhuizen/Online-Resume-System.git`
 
-### `npm install @material-ui/pickers`
+### Install Node.js dependencies
 
-### `npm install @nivo/pie`
+#### * `npm install @date-io/moment`
 
-### `npm install firebase`
+#### * `npm install @material-ui/core`
 
-### `npm install moment`
+#### * `npm install @material-ui/icons`
 
-### `npm install nivo`
+#### * `npm install @material-ui/pickers`
 
-### `npm install react`
+#### * `npm install @nivo/pie`
 
-### `npm install react-dom`
+#### * `npm install firebase`
 
-### `npm install react-material-color-picker`
+#### * `npm install moment`
 
-### `npm install react-quill-2`
+#### * `npm install nivo`
 
-### `npm install react-router-dom`
+#### * `npm install react`
 
-### `npm install react-scripts`
+#### * `npm install react-dom`
 
-* Create project build
-### `npm run build`
+#### * `npm install react-material-color-picker`
 
-* Allow ufw firewall port
-### `ufw allow 5000/tcp`
+#### * `npm install react-quill-2`
 
-* Install basic server
-### `npm install -g serve`
+#### * `npm install react-router-dom`
 
-* Run basic server
-### `serve -s build`
+#### * `npm install react-scripts`
+
+### Create project build
+
+#### * `npm run build`
+
+### Allow ufw firewall port
+
+#### * `ufw allow 5000/tcp`
+
+### Install basic server
+
+#### * `npm install -g serve`
+
+### Run basic server
+
+#### * `serve -s build`
 
 Runs the app in the production mode.<br>
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
