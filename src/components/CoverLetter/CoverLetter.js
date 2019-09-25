@@ -130,7 +130,7 @@ function getClasses() {
  * @return JSX component
  */
 export const CoverLetter = ({ data, control, render, ...props }) => {
-    const { document, experienceMaster, experiencePrimary, experienceSecondary, employment, education, hobby, isPaper } = data;
+    const { document, experienceMaster, experienceApprentice, experiencePrimary, experienceSecondary, employment, education, hobby, isPaper } = data;
 
     const classes = getClasses()
     return <>
@@ -220,11 +220,21 @@ export const CoverLetter = ({ data, control, render, ...props }) => {
                 <footer style={{ pageBreakBefore: "always" }}>
                     <div style={{ width: "100%", height: 300, position: "relative" }} className={classes.quickBreakdownContainer}>
                         <h6 className={classes.subheading}>
-                            Targeted Skill Set
+                            Targeted skill set Development
                         </h6>
                         <div style={{ width: "100%", height: 300, position: "absolute" }} id="donutChart">
                             <DonutChart
                                 chartData={experienceMaster}
+                            />
+                        </div>
+                    </div>
+                    <div style={{ width: "100%", height: 300, position: "relative" }} className={classes.quickBreakdownContainer}>
+                        <h6 className={classes.subheading}>
+                            Targeted skill set Databases
+                        </h6>
+                        <div style={{ width: "100%", height: 300, position: "absolute" }} id="donutChart">
+                            <DonutChart
+                                chartData={experienceApprentice}
                             />
                         </div>
                     </div>
@@ -308,12 +318,34 @@ export default withRouter(({ match, isPaper, ...props }) => {
     const { collection: hobbyCollection } = useContext(HobbyContext);
 
     const experienceMaster = [];
+    let total = 0;
+    [...Array(5).keys()].reverse().map((index) => { //.reverse() -> in order to get the most popular label the darkest color
+        index++;
+        total += document[`experienceLevel${index}`];
+    });
     [...Array(5).keys()].reverse().map((index) => { //.reverse() -> in order to get the most popular label the darkest color
         index++;
         experienceMaster.push({
             id: document[`experience${index}`],
             label: document[`experience${index}`],
-            value: document[`experience${index}`] === "Vue.js" ? 14 : Math.floor(document[`experienceLevel${index}`] / 450 * 100),
+            value: Math.floor(document[`experienceLevel${index}`] / total * 100) + (document[`experience${index}`] === "Javascript / ES6" ? 1 : 0),
+        });
+    });
+
+    const experienceApprentice = [];
+    total = 0;
+    [...Array(5).keys()].reverse().map((index) => { //.reverse() -> in order to get the most popular label the darkest color
+        index += 5;
+        index++;
+        total += document[`experienceLevel${index}`];
+    });
+    [...Array(5).keys()].reverse().map((index) => { //.reverse() -> in order to get the most popular label the darkest color
+        index += 5;
+        index++;
+        experienceApprentice.push({
+            id: document[`experience${index}`],
+            label: document[`experience${index}`],
+            value: Math.floor(document[`experienceLevel${index}`] / total * 100) + (document[`experience${index}`] === "MySQL" ? 1 : 0),
         });
     });
 
@@ -456,6 +488,7 @@ export default withRouter(({ match, isPaper, ...props }) => {
         data: {
             document,
             experienceMaster: experienceMaster.sort((a, b) => a.value - b.value),
+            experienceApprentice: experienceApprentice.sort((a, b) => a.value - b.value),
             experiencePrimary,
             experienceSecondary,
             employment,

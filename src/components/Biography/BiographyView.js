@@ -341,6 +341,17 @@ export const BiographyView = ({ data, control, render, ...props }) => {
                                     />
                                 </span>
                             </div>
+                            <div className={classes.remote}>
+                                <span style={{ verticalAlign: "middle" }}>
+                                    <LabelEdit
+                                        id="remote"
+                                        label="remote"
+                                        value={document.remote}
+                                        liftState={handleLiftState}
+                                        isEdit={isEdit}
+                                    />
+                                </span>
+                            </div>
                             <div className={classes.currentPosition}>
                                 <span style={{ verticalAlign: "middle" }}>
                                     <LabelEdit
@@ -624,7 +635,7 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
             { col1: { align: "left", text: "Gender" }, col2: { align: "right", text: document.gender } },
             //{ col1: { align: "left", text: "Employment Equity" }, col2: { align: "right", text: document.equity } },
             { col1: { align: "left", text: "Marital Status" }, col2: { align: "right", text: document.married } },
-            { col1: { align: "left", text: "Drivers Licence" }, col2: { align: "right", text: document.drivers } }
+            //{ col1: { align: "left", text: "Drivers Licence" }, col2: { align: "right", text: document.drivers } }
         ]
     };
 
@@ -637,7 +648,8 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
         },
         tableRow: [
             { col1: { align: "left", text: "Current Position" }, col2: { align: "right", text: document.currentPosition } },
-            { col1: { align: "left", text: "Availability" }, col2: { align: "right", text: document.availability } }
+            { col1: { align: "left", text: "Availability" }, col2: { align: "right", text: document.availability } },
+            { col1: { align: "left", text: "Willing to work remotely / contract" }, col2: { align: "right", text: document.remote } }
         ]
     };
 
