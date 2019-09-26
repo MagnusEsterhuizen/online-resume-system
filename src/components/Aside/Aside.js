@@ -265,7 +265,7 @@ export const Aside = ({ data, control, render, ...props }) => {
                     {/*</Hidden>*/}
                 </section>
                 <section style={{ textAlign: "center" }}>
-                    <div className={classes.phone} style={{ textAlign: "left", marginBottom: 10 }}>Download PDF:</div>
+                    <div className={classes.phone} style={{ textAlign: "left", marginBottom: 10 }}><strong>DOWNLOAD:</strong></div>
                     {authGroup && authGroup === "viewer" && document.pdfViewer || authGroup === "admin" && document.pdfGuest
                         ? <>
                             <Button href={document.pdfViewer} target="_blank" variant="contained" color="secondary" className={classes.button} style={{ width: 160 }}>
