@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 //database
-import { doSubscribe, doInsert, doUpdate, doDelete, doUpload, doDrop } from "./../../database/firebase/firebase";
+import { doSubscribe, doInsert, doUpdate, doDelete, doUpload, doDrop, doExport, doDuplicate } from "./../../database/firebase/firebase";
 
 //context
 import AuthorizeContext from "./../../context/AuthorizeContext/AuthorizeContext";
@@ -160,6 +160,27 @@ const documentReducer = (state, action) => {
             }
             return state;
 
+        case "exportDB":
+            //delete
+            if (true) {
+                doExport();
+            }
+            else {
+                //use localstorage (TODO!)
+            }
+            return state;
+
+
+        case "duplicateDB":
+            //delete
+            if (true) {
+                doDuplicate();
+            }
+            else {
+                //use localstorage (TODO!)
+            }
+            return state;
+
         default:
             return state;
     }
@@ -262,6 +283,18 @@ export const useDocumentState = (CollectionContext, docKey, docVal, initialState
         });
     };
 
+    function exportDB() {
+        dispatch({
+            type: "exportDB"
+        });
+    };
+
+    function duplicateDB() {
+        dispatch({
+            type: "duplicateDB"
+        });
+    };
+
     //load data into state when collection updates
     useEffect(() => {
         if (docVal) {
@@ -279,7 +312,8 @@ export const useDocumentState = (CollectionContext, docKey, docVal, initialState
         loadDocument: loadState,
         newDocument, getDocument,
         saveDocument, removeDocument,
-        uploadFile, dropFile
+        uploadFile, dropFile,
+        exportDB, duplicateDB
     };
 };
 

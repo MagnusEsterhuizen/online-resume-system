@@ -8,8 +8,8 @@ import "firebase/storage";
 import authorizeFields from "./authorizeFields";
 
 //init
-import credentials from "./credentials";
-//export default credentials();
+import { sourceCredentials, destinationCredentials } from "./credentials";
+firebase.initializeApp(sourceCredentials);
 
 //subscribe
 /**
@@ -229,4 +229,147 @@ export const doDrop = (folder, filename, onSuccess) => {
                 onSuccess(true);
             }
         });
+}
+
+//export
+/**
+ * (Firebase) Perform database duplication
+ */
+export const doExport = () => {
+    const sourceAdmin = firebase.initializeApp(sourceCredentials, "export");
+    const dumped = {};
+
+    /* this schema is how your DB is organized in a tree structure. You don"t have to care about the Documents
+      but you do need to inform the name of your collections and any subcollections, in this
+      case we have two collections called users and groups, the all have their documents, but 
+      the collection users has its own subcollections, friends and groups, which again have their
+      own subcollection, messages.
+
+      const schema = {
+          users: {
+              friends: {
+                  messages: {},
+              },
+              groups: {
+                  messages: {},
+              },
+          },
+          groups: {},
+      };
+    */
+
+    const schema = {
+        biography: {},
+        education: {},
+        employment: {},
+        hobby: {},
+        permission: {},
+        portfolio: {},
+        //request: {}
+    };
+
+    const db = sourceAdmin.firestore();
+    const dump = (dbRef, aux, curr) => {
+        return Promise.all(Object.keys(aux).map((collection) => {
+            return dbRef.collection(collection).get()
+                .then((data) => {
+                    let promises = [];
+                    data.forEach((doc) => {
+                        const data = doc.data();
+                        if (!curr[collection]) {
+                            curr[collection] = {
+                                data: {},
+                                type: "collection",
+                            };
+                            curr[collection].data[doc.id] = {
+                                data,
+                                type: "document",
+                            }
+                        } 
+                        else {
+                            curr[collection].data[doc.id] = data;
+                        }
+                        promises.push(dump(dbRef.collection(collection).doc(doc.id), aux[collection], curr[collection].data[doc.id]));
+                    })
+                    return Promise.all(promises);
+                });
+        })).then(() => {
+            return curr;
+        })
+    };
+
+    const aux = { ...schema };
+    const answer = {};
+    dump(db, aux, answer).then((answer) => {
+        console.log(JSON.stringify(answer, null, 4));
+    });
+}
+
+//duplicate
+/**
+ * (Firebase) Perform database duplication
+ */
+export const doDuplicate = () => {
+
+    const sourceAdmin = firebase.initializeApp(sourceCredentials, "source");
+    const destinationAdmin = firebase.initializeApp(destinationCredentials, "destination");
+
+    /* this schema is how your DB is organized in a tree structure. You don"t have to care about the Documents
+      but you do need to inform the name of your collections and any subcollections, in this
+      case we have two collections called users and groups, the all have their documents, but 
+      the collection users has its own subcollections, friends and groups, which again have their
+      own subcollection, messages.
+
+      const schema = {
+          users: {
+              friends: {
+                  messages: {},
+              },
+              groups: {
+                  messages: {},
+              },
+          },
+          groups: {},
+      };
+    */
+
+    const schema = {
+        biography: {},
+        education: {},
+        employment: {},
+        hobby: {},
+        permission: {},
+        portfolio: {},
+        //request: {}
+    };
+
+    const source = sourceAdmin.firestore();
+    const destination = destinationAdmin.firestore();
+    const aux = { ...schema };
+
+    const copy = (sourceDBrep, destinationDBref, aux) => {
+        return Promise.all(Object.keys(aux).map((collection) => {
+            return sourceDBrep.collection(collection).get()
+                .then((data) => {
+                    let promises = [];
+                    data.forEach((doc) => {
+                        const data = doc.data();
+                        promises.push(
+                            destinationDBref.collection(collection).doc(doc.id).set(data).then((data) => {
+                                return copy(
+                                    sourceDBrep.collection(collection).doc(doc.id),
+                                    destinationDBref.collection(collection).doc(doc.id),
+                                    aux[collection]
+                                );
+                            })
+                        );
+                    });
+                    return Promise.all(promises);
+                });
+        }));
+    };
+
+    copy(source, destination, aux).then(() => {
+        console.log("copied");
+    });
 }

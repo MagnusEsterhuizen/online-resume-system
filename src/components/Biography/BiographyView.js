@@ -566,7 +566,7 @@ export const BiographyView = ({ data, control, render, ...props }) => {
  */
 export default withRouter(({ match, history, isPaper, template, ...props }) => {
     const { authGroup } = useContext(AuthorizeContext);
-    const { document, setDocument, saveDocument, removeDocument, uploadFile, dropFile } = useDocumentState(
+    const { document, setDocument, saveDocument, removeDocument, uploadFile, dropFile, exportDB, duplicateDB } = useDocumentState(
         BiographyContext,
         props.documentId || match.params["id"]
             ? "id"
@@ -678,6 +678,8 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
             history,
             saveDocument,
             removeDocument,
+            exportDB,
+            duplicateDB,
             viewPath: `/biography`,
             editPath: `/biography/edit`,
             cancelPath: "/biography",

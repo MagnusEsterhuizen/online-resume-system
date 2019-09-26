@@ -56,12 +56,20 @@ function getClasses() {
  */
 const AdminMenu = ({ data, control, render, ...props }) => {
     const { template, dialogTitle, dialogSubTitle, dialogText } = data;
-    const { handleNew, handleView, handleEdit, handleSave, handleRemove, handleCancel } = control;
+    const { handleNew, handleExport, handleDuplicate, handleView, handleEdit, handleSave, handleRemove, handleCancel } = control;
 
     const classes = getClasses();
     return <>
         <menu className={classes.menuStyle} id="AdminMenu">
             <div style={{ textAlign: "right", padding: 16 }}>
+                {handleExport
+                    ? <Button onClick={handleExport}>Export DB</Button>
+                    : <></>
+                }
+                {handleDuplicate
+                    ? <Button onClick={handleDuplicate}>Duplicate DB</Button>
+                    : <></>
+                }
                 {handleNew && ["list", "view", "edit"].indexOf(template) !== -1
                     ? <Button onClick={handleNew}>New</Button>
                     : <></>
@@ -114,9 +122,27 @@ const AdminMenu = ({ data, control, render, ...props }) => {
  * @param props - props extra
  * @return JSX component
  */
-export default ({ template, document, saveDocument, removeDocument, newPath, viewPath, editPath, cancelPath, history, dialogTitle, dialogSubTitle, dialogText, ...props }) => {
+export default ({ template, document, saveDocument, removeDocument, exportDB, duplicateDB, newPath, viewPath, editPath, cancelPath, history, dialogTitle, dialogSubTitle, dialogText, ...props }) => {
 
     //event handlers
+    function handleExport() {
+        if(exportDB){
+            exportDB();
+        }
+        else{
+            alert("Please ExportDB from Biography Area");
+        }
+    }
+
+    function handleDuplicate() {
+        if(duplicateDB){
+            duplicateDB();
+        }
+        else{
+            alert("Please DuplicateDB from Biography Area");
+        }
+    }
+
     function handleNew() {
         history.push(newPath);
     }
@@ -154,6 +180,8 @@ export default ({ template, document, saveDocument, removeDocument, newPath, vie
             dialogText
         },
         control: {
+            handleExport,
+            handleDuplicate,
             handleNew,
             handleView,
             handleEdit,
