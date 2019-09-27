@@ -189,12 +189,13 @@ export const SignIn = ({ data, control, render, ...props }) => {
 /**
  * (Container Component) Displays Singin input form
  * @param history - navigation history
+ * @param match - current navigation match
  * @param location - current navigation path
  * @param isPaper - inludes box shadow to component container
  * @param props - props extra
  * @return JSX component
  */
-export default withRouter(({ history, location, isPaper, ...props }) => {
+export default withRouter(({ history, match, location, isPaper, ...props }) => {
     const { doLogin } = useContext(AuthorizeContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -236,6 +237,30 @@ export default withRouter(({ history, location, isPaper, ...props }) => {
     useEffect(() => {
         if (isPaper) {
             window.scrollTo(0, 0);
+        }
+    }, [location.pathname]);
+
+    //single sign on
+    useEffect(() => {
+        if (match.params.authString) {
+            try {
+                const authString = atob(match.params.authString);
+                const ssoEmail = /un\:(.*?)&/.exec(authString)[1];
+                const ssoPassword = /pw\:(.*?)$/.exec(authString)[1];
+
+                const onSuccess = () => console.log("success");
+                const onFail = (message) => {
+                    console.log("onfail", message)
+                    setTitle("Error");
+                    setSubTitle("Could not Sign-in");
+                    setText(message);
+                    setDialogOpen(true);
+                }
+                doLogin(ssoEmail, ssoPassword, onSuccess, onFail);
+            }
+            catch (err) {
+                console.log("error: " + err)
+            }
         }
     }, [location.pathname]);
 

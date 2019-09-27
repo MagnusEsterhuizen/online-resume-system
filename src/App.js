@@ -260,6 +260,13 @@ export const App = ({ data, control, render, ...props }) => {
 												: <Redirect to="/" />
 											: <SignIn isPaper={true} />
 									} />
+									<Route exact path="/signin/:authString" render={({ history }) =>
+										authGroup !== "guest"
+											? history.location.state !== undefined
+												? <Redirect to={history.location.state.from} />
+												: <Redirect to="/" />
+											: <SignIn isPaper={true} />
+									} />
 
 									{/*request*/}
 									<Route exact path="/request" render={({ history }) =>
