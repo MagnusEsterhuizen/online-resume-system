@@ -1,8 +1,8 @@
 Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
-## Installation Instructions Database
+## 1. Installation Instructions Database
 
-### Create Firebase account
+### a.Create Firebase account
 
 #### Navigate to
 
@@ -16,11 +16,11 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 #### * `Online Resume System`
 
-### Create new Database
+### b. Create new Database
 
 #### `test mode`
 
-### Setup Database
+### c. Setup Database
 	{
 		"biography": {
 			[document-id]: {
@@ -244,7 +244,7 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 		}
 	}
 
-### Create new Authentication Method
+### d. Create new Authentication Method
 
 #### * `email & password`
 
@@ -254,9 +254,11 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 #### * `password: yourVerySecretPassword`
 
-#### Copy user UID
+#### Save user
 
-### Create a new document in the Permission collection
+#### * `Copy and keep UID for next step - eg. UomyG0zVDYmiYFklOVjDY27moU8d`
+
+### e. Create a new document in the Permission collection
 
 	[document-id]: {
 		"email": [email address],
@@ -265,7 +267,7 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 	}
 
 
-### Examples
+#### Example
 
 	kG0DYmomyDYlOVU2zV8j7iYFmoUd: {
 		"email": "yourName@yourEmailAddress",
@@ -274,21 +276,21 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 	}
 
 
-## Installation Instructions GUI
+## 2. Installation Instructions GUI
 
-### Install node.js and npm
+### a. Install node.js and npm
 
 #### * `apt-get install nodejs`
 
-### Create a new React App
+### b. Create a new React App
 
 #### * `npx create-react-app online-resume-system`
 
-### Clone repository
+### c. Clone repository
 
 #### * `git clone https://github.com/MagnusEsterhuizen/Online-Resume-System.git`
 
-### Install Node.js dependencies
+### d. Install Node.js dependencies
 
 #### * `npm install @date-io/moment`
 
@@ -318,19 +320,19 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 #### * `npm install react-scripts`
 
-### Create project build
+### e. Create project build
 
 #### * `npm run build`
 
-### Allow ufw firewall port
+### f. Allow ufw firewall port
 
 #### * `ufw allow 5000/tcp`
 
-### Install basic server
+### g. Install basic server
 
 #### * `npm install -g serve`
 
-### Run basic server
+### h. Run basic server
 
 #### * `serve -s build`
 
