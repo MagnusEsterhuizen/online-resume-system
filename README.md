@@ -1,4 +1,10 @@
-Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
+# Online Resume System
+
+## [Demo as Guest user](http://businessbox1.dedicated.co.za).
+
+## [Demo as Viewer user](http://businessbox1.dedicated.co.za/signin/dW46dmlld2VyQGNoYXJsaWUtYnJvd24uY29tJnB3OlwvaWV3ZXJVJGVyAze4aG).
+
+## [Demo as Admin user](http://businessbox1.dedicated.co.za/signin/dW46YWRtaW5AY2hhcmxpZS1icm93bi5jb20mcHc6QGRtaW5VJGVyAze4aG).
 
 ## 1. Installation Instructions Database
 
