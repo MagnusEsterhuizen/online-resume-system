@@ -22,7 +22,6 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 ### Setup Database
 
-#### `{
     "biography": {
 		[document-id]: {
 			"address": [string],
@@ -243,7 +242,6 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 			"title": [string],
 		}
     }
-}`
 
 ### Create new Authentication Method
 
@@ -259,21 +257,21 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 ### Create a new document in the Permission collection
 
-#### `{
-	[document-id]: {
-		"email": [email address],
-		"group": [guest | viewer | admin],
-		"uid": [UID]
-	}
-}`
+[document-id]: {
+	"email": [email address],
+	"group": [guest | viewer | admin],
+	"uid": [UID]
+}
 
-#### `{
-	kG0DYmomyDYlOVU2zV8j7iYFmoUd: {
-		"email": "yourName@yourEmailAddress",
-		"group": "admin",
-		"uid": UomyG0zVDYmiYFklOVjDY27moU8d,
-	}
-}`
+
+### Example
+
+kG0DYmomyDYlOVU2zV8j7iYFmoUd: {
+	"email": "yourName@yourEmailAddress",
+	"group": "admin",
+	"uid": UomyG0zVDYmiYFklOVjDY27moU8d,
+}
+
 
 ## Installation Instructions GUI
 
