@@ -284,9 +284,9 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 ### b. Create a new React App
 
-#### * `npx create-react-app online-resume-system`
+#### * `npx create-react-app Online-Resume-System`
 
-### c. Clone repository
+### c. Clone repository indide folder Online-Resume-System
 
 #### * `git clone https://github.com/MagnusEsterhuizen/Online-Resume-System.git`
 
