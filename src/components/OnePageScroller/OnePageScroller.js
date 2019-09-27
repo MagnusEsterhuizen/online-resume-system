@@ -215,6 +215,58 @@ export const OnePageScroller = ({ data, control, render, ...props }) => {
                         documentId={biographyId}
                     />
                 </div>
+                <div className={classes.readMoreContainer}>
+                    <div id="page_biography"></div>
+                    <div className={classes.gutter}>
+                        <i className={"material-icons " + classes.gutterIcon}>person</i>
+                    </div>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                Biography
+                            </h4>
+                        </header>
+                        <BiographyView
+                            {...routeProps}
+                            documentId={biographyId}
+                            template="view"
+                        />
+                    </div>
+                </div>
+                <div className={classes.readMoreContainer}>
+                    <div id="page_employment"></div>
+                    <div className={classes.gutter}>
+                        <i className={"material-icons " + classes.gutterIcon}>work</i>
+                    </div>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                Employment History
+                            </h4>
+                        </header>
+                        <EmploymentList
+                            {...routeProps}
+                            template="list"
+                        />
+                    </div>
+                </div>
+                <div className={classes.readMoreContainer}>
+                    <div id="page_education"></div>
+                    <div className={classes.gutter}>
+                        <i className={"material-icons " + classes.gutterIcon}>school</i>
+                    </div>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                Education History
+                            </h4>
+                        </header>
+                        <EducationList
+                            {...routeProps}
+                            template="list"
+                        />
+                    </div>
+                </div>
                 <div style={{ display: readMoreDisplay === "flex" ? "block" : "block", alignSelf: "stretch" }}>
                     <div className={classes.container} style={{ textAlign: "center" }}>
                         <div className={classes.subheading2}>

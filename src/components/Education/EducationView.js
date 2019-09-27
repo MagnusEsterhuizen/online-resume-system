@@ -73,7 +73,7 @@ function getClasses() {
  * @return JSX component
  */
 export const EducationView = ({ data, control, render, ...props }) => {
-    const { template, document, isEdit, isFull, isPaper, history } = data;
+    const { authGroup, template, document, isEdit, isFull, isPaper, history } = data;
     const { handleLiftState, handleUploadFile, handleDropFile } = control;
     const { adminMenu: AdminMenu } = render;
 
@@ -119,13 +119,21 @@ export const EducationView = ({ data, control, render, ...props }) => {
                         />
                         &nbsp;&nbsp;&nbsp;&nbsp;
                         <span className={classes.fulltime}>
-                            (<LabelEdit
+                            {document.fulltime
+                                ? <>(</>
+                                : <></>
+                            }
+                            <LabelEdit
                                 id="fulltime"
                                 label="fulltime"
                                 value={document.fulltime}
                                 liftState={handleLiftState}
                                 isEdit={isEdit}
-                            />)
+                            />
+                            {document.fulltime
+                                ? <>)</>
+                                : <></>
+                            }
                         </span>
                     </div>
                     {template === "list"
@@ -207,7 +215,7 @@ export const EducationView = ({ data, control, render, ...props }) => {
                         <span className={classes.labelCaption}>subjects and classes</span>
                     </div>
                     <div className={classes.chipsContainer}>
-                        {[...Array(template === "list" ? 3 : 10).keys()].map((index) => {
+                        {[...Array(template === "list" && authGroup !== "guest" ? 3 : 10).keys()].map((index) => {
                             index++;
                             if (document["subject" + index] || isEdit === true) {
                                 return <React.Fragment key={index}>
@@ -219,7 +227,7 @@ export const EducationView = ({ data, control, render, ...props }) => {
                                         liftState={handleLiftState}
                                         isEdit={isEdit}
                                     />
-                                    {template === "list" && index === 3
+                                    {template === "list" && authGroup !== "guest" && index === 3
                                         ? <Link to={`/education/${encodeURI(document.grade)}`}>
                                             <i className={"material-icons " + classes.dotDotDot} style={{ position: "relative", top: 15, fontSize: 32, marginLeft: 8 }}>more_horiz</i>
                                         </Link>
@@ -328,6 +336,7 @@ export default withRouter(({ match, history, template, ...props }) => {
     return EducationView({
         ...props,
         data: {
+            authGroup,
             template,
             document,
             isEdit: authGroup === "admin" && template === "edit"

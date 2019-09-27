@@ -291,11 +291,54 @@ export const App = ({ data, control, render, ...props }) => {
 										}
 									/>
 
-									{/*onePageScroller*/}
+									{/*portfolio*/}
 									<AuthorizeRoute
-										path="/:page"
+										path="/portfolio"
 										authGroup={authGroup}
 										component={() =>
+											<RequestContextProvider>
+												<OnePageScroller biographyId={biographyId} />
+											</RequestContextProvider>
+										}
+									/>
+
+									{/*hobbies*/}
+									<AuthorizeRoute
+										path="/hobbies"
+										authGroup={authGroup}
+										component={() =>
+											<RequestContextProvider>
+												<OnePageScroller biographyId={biographyId} />
+											</RequestContextProvider>
+										}
+									/>
+
+									{/*diplomas*/}
+									<AuthorizeRoute
+										path="/diplomas"
+										authGroup={authGroup}
+										component={() =>
+											<RequestContextProvider>
+												<OnePageScroller biographyId={biographyId} />
+											</RequestContextProvider>
+										}
+									/>
+
+									{/*references*/}
+									<AuthorizeRoute
+										path="/references"
+										authGroup={authGroup}
+										component={() =>
+											<RequestContextProvider>
+												<OnePageScroller biographyId={biographyId} />
+											</RequestContextProvider>
+										}
+									/>
+
+									{/*onePageScroller*/}
+									<Route
+										path="/:page"
+										render={() =>
 											<RequestContextProvider>
 												<OnePageScroller biographyId={biographyId} />
 											</RequestContextProvider>

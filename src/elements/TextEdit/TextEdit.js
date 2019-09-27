@@ -78,7 +78,9 @@ export const TextEdit = ({ data, control, render, ...props }) => {
                 <br />
             </>
             : !isFull
-                ? <>{(value || "").replace(/<[^>]*>?/gm, " ").match(/^.{80}.*?\./) + ".."}</>
+                ? value
+                    ? <>{value.replace(/<[^>]*>?/gm, " ").match(/^.{80}.*?\./) + ".."}</>
+                    : <></>
                 : <div dangerouslySetInnerHTML={{ __html: value || "" }} className="html"></div>
         }
     </>

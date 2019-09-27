@@ -243,8 +243,27 @@ export default withRouter(({ history, match, location, isPaper, ...props }) => {
     //single sign on
     useEffect(() => {
         if (match.params.authString) {
+            let authString = "";
+
+            //postfix will be added to base64 encoded string and replace the ",=,==" sybmols
+            function getAuthString(string) {
+                if (string.match(/Aze4aG$/)) {
+                    //none
+                    authString = atob(string.replace(/Aze4aG$/, ""));
+                }
+                else if (string.match(/Vc5P7K$/)) {
+                    //=
+                    authString = atob(string.replace(/Vc5P7K$/, "="));
+                }
+                else if (string.match(/B2y99o$/)) {
+                    //==
+                    authString = atob(string.replace(/B2y99o$/, "=="));
+                }
+                return authString;
+            }
+
             try {
-                const authString = atob(match.params.authString);
+                const authString = getAuthString(match.params.authString);
                 const ssoEmail = /un\:(.*?)&/.exec(authString)[1];
                 const ssoPassword = /pw\:(.*?)$/.exec(authString)[1];
 
