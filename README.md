@@ -1,10 +1,18 @@
 # Online Resume System
 
-## [Demo as Guest user](http://businessbox1.dedicated.co.za).
+## Demo Accounts
 
-## [Demo as Viewer user](http://businessbox1.dedicated.co.za/signin/dW46dmlld2VyQGNoYXJsaWUtYnJvd24uY29tJnB3OlwvaWV3ZXJVJGVyAze4aG).
+### Users can view basic Resume
 
-## [Demo as Admin user](http://businessbox1.dedicated.co.za/signin/dW46YWRtaW5AY2hhcmxpZS1icm93bi5jb20mcHc6QGRtaW5VJGVyAze4aG).
+#### * [Guest Account](http://businessbox1.dedicated.co.za).
+
+### Users can view complete Resume
+
+#### * [Viewer Account](http://businessbox1.dedicated.co.za/signin/dW46dmlld2VyQGNoYXJsaWUtYnJvd24uY29tJnB3OlwvaWV3ZXJVJGVyAze4aG).
+
+### Users can view and edit complete Resume
+
+#### * [Admin Account](http://businessbox1.dedicated.co.za/signin/dW46YWRtaW5AY2hhcmxpZS1icm93bi5jb20mcHc6QGRtaW5VJGVyAze4aG).
 
 ## 1. Installation Instructions Database
 
