@@ -2,7 +2,7 @@ Demo Project [Online Resume System](http://businessbox1.dedicated.co.za).
 
 ## 1. Installation Instructions Database
 
-### a.Create Firebase account
+### a. Create Firebase account
 
 #### Navigate to
 
