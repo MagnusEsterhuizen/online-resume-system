@@ -669,7 +669,7 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
         },
         tableRow: language
     };
-
+    
     //adminMenu settings
     const adminMenuProps = authGroup === "admin"
         ? {
