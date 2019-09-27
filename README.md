@@ -1,16 +1,16 @@
-# Online Resume System
+# Online Résumé System
 
 ## Demo Accounts
 
-### Users can view basic Resume
+### Users can view basic Résumé
 
 #### * [Guest Account](http://businessbox1.dedicated.co.za).
 
-### Users can view complete Resume
+### Users can view complete Résumé
 
 #### * [Viewer Account](http://businessbox1.dedicated.co.za/signin/dW46dmlld2VyQGNoYXJsaWUtYnJvd24uY29tJnB3OlwvaWV3ZXJVJGVyAze4aG).
 
-### Users can view and edit complete Resume
+### Users can view and edit complete Résumé
 
 #### * [Admin Account](http://businessbox1.dedicated.co.za/signin/dW46YWRtaW5AY2hhcmxpZS1icm93bi5jb20mcHc6QGRtaW5VJGVyAze4aG).
 
@@ -24,11 +24,11 @@
 
 #### Create new Project
 
-#### * `Online-Resume-System`
+#### * `Online-Résumé-System`
 
 #### Add a Web App </> to Project
 
-#### * `Online Resume System`
+#### * `Online Résumé System`
 
 ### b. Create new Database
 
@@ -298,11 +298,11 @@
 
 ### b. Create a new React App
 
-#### * `npx create-react-app Online-Resume-System`
+#### * `npx create-react-app Online-Résumé-System`
 
-### c. Clone repository indide folder Online-Resume-System
+### c. Clone repository indide folder Online-Résumé-System
 
-#### * `git clone https://github.com/MagnusEsterhuizen/Online-Resume-System.git`
+#### * `git clone https://github.com/MagnusEsterhuizen/Online-Résumé-System.git`
 
 ### d. Install Node.js dependencies
 
