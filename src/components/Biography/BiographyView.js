@@ -289,6 +289,17 @@ export const BiographyView = ({ data, control, render, ...props }) => {
                                     />
                                 </span>
                             </div>
+                            <div className={classes.timezone}>
+                                <span style={{ verticalAlign: "middle" }}>
+                                    <LabelEdit
+                                        id="timezone"
+                                        label="timezone"
+                                        value={document.timezone}
+                                        liftState={handleLiftState}
+                                        isEdit={isEdit}
+                                    />
+                                </span>
+                            </div>
                             <div className={classes.equity}>
                                 <span style={{ verticalAlign: "middle" }}>
                                     <SelectEdit
@@ -613,7 +624,8 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
             { col1: { align: "left", text: "Phone Number" }, col2: { align: "right", text: document.phone } },
             { col1: { align: "left", text: "Email Address" }, col2: { align: "right", text: document.email } },
             { col1: { align: "left", text: "Physical Address" }, col2: { align: "right", text: document.address } },
-            { col1: { align: "left", text: "Province & Country" }, col2: { align: "right", text: document.location } }
+            { col1: { align: "left", text: "Province & Country" }, col2: { align: "right", text: document.location } },
+            { col1: { align: "left", text: "Timezone" }, col2: { align: "right", text: document.timezone } }
         ]
     };
     if (contact.tableRow[2].col2.text) {

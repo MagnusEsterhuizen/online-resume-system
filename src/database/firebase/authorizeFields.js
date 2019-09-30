@@ -42,6 +42,7 @@ const biographyKeep = ["availability",
     "remote",
     "secondname",
     "skype",
+    "timezone",
     "twitter",
     "pdfGuest"
 ];

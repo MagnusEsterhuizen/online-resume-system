@@ -63,11 +63,11 @@ const AdminMenu = ({ data, control, render, ...props }) => {
         <menu className={classes.menuStyle} id="AdminMenu">
             <div style={{ textAlign: "right", padding: 16 }}>
                 {handleExport
-                    ? <Button onClick={handleExport}>Export DB</Button>
+                    ? <Button color="secondary" onClick={handleExport}>Export DB</Button>
                     : <></>
                 }
                 {handleDuplicate
-                    ? <Button onClick={handleDuplicate}>Duplicate DB</Button>
+                    ? <Button color="secondary" onClick={handleDuplicate}>Duplicate DB</Button>
                     : <></>
                 }
                 {handleNew && ["list", "view", "edit"].indexOf(template) !== -1
@@ -125,50 +125,64 @@ const AdminMenu = ({ data, control, render, ...props }) => {
 export default ({ template, document, saveDocument, removeDocument, exportDB, duplicateDB, newPath, viewPath, editPath, cancelPath, history, dialogTitle, dialogSubTitle, dialogText, ...props }) => {
 
     //event handlers
-    function handleExport() {
-        if(exportDB){
+    let handleExport;
+    if (exportDB) {
+        handleExport = function () {
             exportDB();
         }
-        else{
-            alert("Please ExportDB from Biography Area");
-        }
     }
 
-    function handleDuplicate() {
-        if(duplicateDB){
+    let handleDuplicate;
+    if (duplicateDB) {
+        handleDuplicate = function () {
             duplicateDB();
         }
-        else{
-            alert("Please DuplicateDB from Biography Area");
+    }
+
+    let handleNew;
+    if (newPath) {
+        handleNew = function () {
+            history.push(newPath);
         }
     }
 
-    function handleNew() {
-        history.push(newPath);
-    }
-
-    function handleView() {
-        history.push(viewPath);
-    }
-
-    function handleEdit() {
-        history.push(editPath);
-    }
-
-    function handleSave() {
-        if (document) {
-            saveDocument(document);
+    let handleView;
+    if (viewPath) {
+        handleView = function () {
+            history.push(viewPath);
         }
     }
 
-    function handleRemove() {
-        if (document && document.id) {
-            removeDocument(document);
+    let handleEdit;
+    if (editPath) {
+        handleEdit = function () {
+            history.push(editPath);
         }
     }
 
-    function handleCancel() {
-        history.push(cancelPath);
+    let handleSave;
+    if (saveDocument) {
+        handleSave = function () {
+            if (document) {
+                saveDocument(document);
+            }
+        }
+    }
+
+    let handleRemove;
+    if (removeDocument) {
+        handleRemove = function () {
+            if (document && document.id) {
+                removeDocument(document);
+            }
+        }
+    }
+
+    let handleCancel;
+    if (cancelPath) {
+        handleCancel = function () {
+            history.push(cancelPath);
+        }
     }
 
     return AdminMenu({
