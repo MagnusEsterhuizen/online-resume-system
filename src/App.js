@@ -393,10 +393,11 @@ export default function () {
 				{ link: { rel: "canonical", href: "" } },
 				{ link: { rel: "stylesheet", href: "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" } },
 				{ link: { rel: "stylesheet", href: "http://fonts.googleapis.com/icon?family=Material+Icons" } },
+				{ script: { src: "/assets/hotjar/hotjar.js" } },
 			],
 			body: [
 				{ script: { src: "https://kit.fontawesome.com/64456708e7.js" } },
-				{ script: { src: "/assets/stickyAside/stickyAside.js" } },
+				{ script: { src: "/assets/stickyAside/stickyAside.js" } }
 			]
 		});
 	}, []);
