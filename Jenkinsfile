@@ -26,7 +26,7 @@ pipeline {
                 sh 'npm install react-quill-2'
                 sh 'npm install react-router-dom'
                 sh 'npm install react-scripts'
-                sh 'mkdir /usr/local/lib/node_modules'
+                sh 'chmod -R 775 /usr/local/lib/node_modules'
                 sh 'npm install -g serve'
                 sh './jenkins/scripts/build.sh'
             }
