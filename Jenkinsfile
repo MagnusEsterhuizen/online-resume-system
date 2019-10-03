@@ -11,6 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+		sh 'npm install --save @csstools/normalize.css'
                 sh 'npm install @date-io/moment'
                 sh 'npm install @material-ui/core'
                 sh 'npm install @material-ui/icons'
