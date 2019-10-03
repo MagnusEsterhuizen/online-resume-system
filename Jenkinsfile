@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-		sh 'npm install --save @csstools/normalize.css'
+                sh 'npm install --save @csstools/normalize.css'
                 sh 'npm install @date-io/moment'
                 sh 'npm install @material-ui/core'
                 sh 'npm install @material-ui/icons'
@@ -26,13 +26,30 @@ pipeline {
                 sh 'npm install react-quill-2'
                 sh 'npm install react-router-dom'
                 sh 'npm install react-scripts'
+                sh 'npm install -g serve'
+                sh './jenkins/scripts/build.sh'
             }
         }
-        stage('Deliver') { 
+        stage('Test: Unit') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
-                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                sh './jenkins/scripts/kill.sh' 
+                sh './jenkins/scripts/test.sh'
+            }
+        }
+        stage('Test: UAT') { 
+            steps {
+                sh './jenkins/scripts/run.sh'
+                input message: 'Finished testing the system? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
+        }
+        stage('Release') { 
+            steps {
+                sh './jenkins/scripts/release.sh'
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh './jenkins/scripts/deploy.sh'
             }
         }
     }
