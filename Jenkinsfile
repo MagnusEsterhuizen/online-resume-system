@@ -11,7 +11,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'npm install @date-io/moment'
+                sh 'npm install @material-ui/core'
+                sh 'npm install @material-ui/icons'
+                sh 'npm install @material-ui/pickers'
+                sh 'npm install @nivo/pie'
+                sh 'npm install firebase'
+                sh 'npm install moment'
+                sh 'npm install nivo'
+                sh 'npm install react'
+                sh 'npm install react-dom'
+                sh 'npm install react-material-color-picker'
+                sh 'npm install react-quill-2'
+                sh 'npm install react-router-dom'
+                sh 'npm install react-scripts'
             }
         }
         stage('Deliver') { 
