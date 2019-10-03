@@ -47,7 +47,7 @@ pipeline {
                 sh './jenkins/scripts/release.sh'
             }
         }
-        stage('Deploy') { 
+        stage('Deploy') {
             steps {
                 sh './jenkins/scripts/deploy.sh'
             }
