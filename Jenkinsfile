@@ -37,10 +37,14 @@ pipeline {
         stage('Test: UAT') { 
             steps {
                 sh './jenkins/scripts/run.sh'
-                input message: 'Goto http://localhost:3000 to perform UAT (User Acceptance Testing)\
-                \
-                Click "Proceed" to release & deploy\
-                Click "Abort" to cancel'
+                input message: '
+                    <small>Goto http://localhost:3000 to perform UAT (User Acceptance Testing)</small>
+                    <br />
+                    <ul>
+                        <li><small>Click <strong>"Proceed"</strong> to release & deploy</small></li>
+                        <li><small>Click <strong>"Abort"</strong> to cancel</small></li>
+                    </ul>
+                '
                 sh './jenkins/scripts/kill.sh'
             }
         }
