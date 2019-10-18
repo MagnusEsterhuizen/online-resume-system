@@ -158,7 +158,8 @@ const Footer = ({ data, control, render, ...props }) => {
                 </Grid>
             </Grid>
             <center className={classes.copyright}>
-                Copyright &copy; Magnus Esterhuizen {new Date().getFullYear()}
+                Copyright &copy; Magnus Esterhuizen {new Date().getFullYear()}<br />
+                <small><a href="/privacypolicy.html" target="_blank">Privacy Policy</a></small>
             </center>
         </Paper >
     </>

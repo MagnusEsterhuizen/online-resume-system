@@ -95,7 +95,7 @@ export default ({ id, value, color, label, liftState, isEdit, ...props }) => {
         data: {
             id,
             value: field[id],
-            color,
+            color: color || "#e8eaf6",
             label,
             isEdit
         },

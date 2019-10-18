@@ -321,7 +321,7 @@ export const EmploymentView = ({ data, control, render, ...props }) => {
                         <span className={classes.labelCaption}>skills and experience</span>
                     </div>
                     <div className={classes.chipsContainer}>
-                        {[...Array(template === "list" && authGroup !== "guest" ? 3 : 10).keys()].map((index) => {
+                        {[...Array(template === "list" && authGroup !== "guest" ? 3 : 30).keys()].map((index) => {
                             index++;
                             if (document["skill" + index] || isEdit === true) {
                                 return <React.Fragment key={index}>
