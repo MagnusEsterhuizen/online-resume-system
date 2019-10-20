@@ -157,6 +157,21 @@ export const OnePagePrint = ({ data, control, render, ...props }) => {
                         />
                     </div>
                 </div>
+                <div className={classes.readMoreContainer + " " + classes.breakBefore}>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                <i className={"material-icons " + classes.gutterIcon} style={{ position: "relative", top: 8 }}>person</i>
+                                &nbsp;Biography
+                            </h4>
+                        </header>
+                        <BiographyView
+                            {...routeProps}
+                            documentId={biographyId}
+                            template="view"
+                        />
+                    </div>
+                </div>
             </Paper>
         </>
     }
