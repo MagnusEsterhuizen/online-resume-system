@@ -13,6 +13,7 @@ import AuthorizeContext from "./../../context/AuthorizeContext/AuthorizeContext"
 
 //components
 import CoverLetter from "./../../components/CoverLetter/CoverLetter";
+import Summary from "./../../components/Summary/Summary";
 import BiographyView from "./../../components/Biography/BiographyView";
 import EmploymentList from "./../../components/Employment/EmploymentList";
 import EducationList from "./../../components/Education/EducationList";
@@ -141,6 +142,21 @@ export const OnePagePrint = ({ data, control, render, ...props }) => {
                         documentId={biographyId}
                     />
                 </div>
+                <div className={classes.readMoreContainer + " " + classes.breakBefore}>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                <i className={"material-icons " + classes.gutterIcon} style={{ position: "relative", top: 8 }}>assignment</i>
+                                &nbsp;Summary
+                            </h4>
+                        </header>
+                        <Summary
+                            {...routeProps}
+                            documentId={biographyId}
+                            template="view"
+                        />
+                    </div>
+                </div>
             </Paper>
         </>
     }
@@ -157,6 +173,21 @@ export const OnePagePrint = ({ data, control, render, ...props }) => {
                     <div className={classes.content}>
                         <header>
                             <h4 className={classes.headingMain}>
+                                <i className={"material-icons " + classes.gutterIcon} style={{ position: "relative", top: 8 }}>assignment</i>
+                                &nbsp;Summary
+                            </h4>
+                        </header>
+                        <Summary
+                            {...routeProps}
+                            documentId={biographyId}
+                            template="view"
+                        />
+                    </div>
+                </div>
+                <div className={classes.readMoreContainer + " " + classes.breakBefore}>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
                                 <i className={"material-icons " + classes.gutterIcon} style={{ position: "relative", top: 8 }}>person</i>
                                 &nbsp;Biography
                             </h4>
@@ -168,7 +199,7 @@ export const OnePagePrint = ({ data, control, render, ...props }) => {
                         />
                     </div>
                 </div>
-                <div className={classes.readMoreContainer + " "/* + classes.breakBefore*/}>
+                <div className={classes.readMoreContainer + " " + classes.breakBefore}>
                     <div className={classes.content}>
                         <header>
                             <h4 className={classes.headingMain}>
@@ -296,6 +327,7 @@ export default withRouter(({ match, history, location, biographyId, ...props }) 
             window.document.querySelectorAll("div:not([data-attr='print']").forEach((element) => element.style.setProperty("display", element.style.display === "" ? "block" : element.style.display, "important"));
 
             window.document.querySelectorAll("menu").forEach((element) => element.style.display = "none");
+            window.document.querySelectorAll("#AdminMenu").forEach((element) => element.style.display = "none");
             window.document.querySelectorAll("#divToolbar").forEach((element) => element.style.margin = 0);
             window.document.querySelectorAll("#divToolbar").forEach((element) => element.style.padding = 0);
             window.document.querySelectorAll("#divToolbar").forEach((element) => element.style.display = "none");

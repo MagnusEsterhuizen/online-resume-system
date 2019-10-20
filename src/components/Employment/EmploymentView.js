@@ -262,7 +262,7 @@ export const EmploymentView = ({ data, control, render, ...props }) => {
                             </div>
                             <div className={classes.listContainer}>
                                 <ul>
-                                    {[...Array(10).keys()].map((index) => {
+                                    {[...Array(20).keys()].map((index) => {
                                         index++;
                                         if (document["duty" + index] || isEdit === true) {
                                             return <li key={index} className={classes.li}>
@@ -321,7 +321,7 @@ export const EmploymentView = ({ data, control, render, ...props }) => {
                         <span className={classes.labelCaption}>skills and experience</span>
                     </div>
                     <div className={classes.chipsContainer}>
-                        {[...Array(template === "list" && authGroup !== "guest" ? 3 : 10).keys()].map((index) => {
+                        {[...Array(25).keys()].map((index) => {
                             index++;
                             if (document["skill" + index] || isEdit === true) {
                                 return <React.Fragment key={index}>
@@ -333,12 +333,6 @@ export const EmploymentView = ({ data, control, render, ...props }) => {
                                         liftState={handleLiftState}
                                         isEdit={isEdit}
                                     />
-                                    {template === "list" && authGroup !== "guest" && index === 3
-                                        ? <Link to={`employment/${encodeURI(document.position)}`}>
-                                            <i className={"material-icons " + classes.dotDotDot} style={{ position: "relative", top: 15, fontSize: 32, marginLeft: 8 }}>more_horiz</i>
-                                        </Link>
-                                        : <></>
-                                    }
                                 </React.Fragment>
                             }
                         })}

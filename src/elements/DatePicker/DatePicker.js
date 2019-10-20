@@ -50,7 +50,12 @@ export const monthYear = (date) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const year = date.getFullYear();
     const month = months[date.getMonth()].substr(0, 3);
-    return `${month} ${year}`;
+    if (date > new Date()) {
+        return "current"
+    }
+    else {
+        return `${month} ${year}`;
+    }
 }
 
 //yearOnly

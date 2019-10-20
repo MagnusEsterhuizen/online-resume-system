@@ -19,7 +19,7 @@ import SpinnerLoader from "./../../elements/SpinnerLoader/SpinnerLoader";
  * @return JSX component
  */
 export const DonutChart = ({ data, control, render, ...props }) => {
-    const { chartData } = data;
+    const { chartData, showLegend } = data;
 
     return <>
         <ResponsivePie
@@ -114,26 +114,28 @@ export const DonutChart = ({ data, control, render, ...props }) => {
                     id: "lines"
                 }
             ]}
-            legends={[
-                {
-                    anchor: "bottom",
-                    direction: "row",
-                    translateY: 56,
-                    itemWidth: 100,
-                    itemHeight: 18,
-                    itemTextColor: "#999",
-                    symbolSize: 18,
-                    symbolShape: "circle",
-                    effects: [
-                        {
-                            on: "hover",
-                            style: {
-                                itemTextColor: "#000"
+            legends={
+                showLegend
+                    ? [{
+                        anchor: "bottom",
+                        direction: "row",
+                        translateY: 56,
+                        itemWidth: 100,
+                        itemHeight: 18,
+                        itemTextColor: "#999",
+                        symbolSize: 18,
+                        symbolShape: "circle",
+                        effects: [
+                            {
+                                on: "hover",
+                                style: {
+                                    itemTextColor: "#000"
+                                }
                             }
-                        }
-                    ]
-                }
-            ]}
+                        ]
+                    }]
+                    : []
+            }
         />
     </>
 }
@@ -145,7 +147,7 @@ export const DonutChart = ({ data, control, render, ...props }) => {
  * @param props - props extra
  * @return JSX component
  */
-export default ({ chartData, ...props }) => {
+export default ({ chartData, showLegend, ...props }) => {
     if (chartData === undefined) {
         chartData = [
             {
@@ -179,7 +181,8 @@ export default ({ chartData, ...props }) => {
     if (chartData[0].value) {
         return DonutChart({
             data: {
-                chartData
+                chartData,
+                showLegend
             },
             control: {},
             render: {}

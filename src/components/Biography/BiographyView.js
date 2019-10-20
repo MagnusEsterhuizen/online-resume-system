@@ -28,14 +28,15 @@ import { useDocumentState } from "./../../context/CollectionContext/CollectionCo
 import BiographyContext from "./BiographyContext";
 
 //styles
+import commonListStyles from "./../_common/ListStyles";
 import commonViewStyles from "./../_common/ViewStyles";
-
 /**
  * (Styles & Classes) Defines the CSS styles and classes for this component
  * @return generated classNames for component
  */
 function getClasses() {
     return {
+        ...commonListStyles(),
         ...commonViewStyles(),
         ...(makeStyles(theme => ({
             tableContainer: {
@@ -102,7 +103,7 @@ export const BiographyView = ({ data, control, render, ...props }) => {
                             tableRow={social.tableRow}
                         />
                     </div>
-                    <div className={classes.tableContainer}>
+                    <div className={classes.tableContainer + " " + classes.breakBefore}>
                         <h6 className={classes.subheading} style={{ color: "#7986cb" }}>
                             {employment.tableHead.col1.text}
                         </h6>
@@ -352,12 +353,45 @@ export const BiographyView = ({ data, control, render, ...props }) => {
                                     />
                                 </span>
                             </div>
+                            <div className={classes.citizenship}>
+                                <span style={{ verticalAlign: "middle" }}>
+                                    <LabelEdit
+                                        id="citizenship"
+                                        label="citizenship"
+                                        value={document.citizenship}
+                                        liftState={handleLiftState}
+                                        isEdit={isEdit}
+                                    />
+                                </span>
+                            </div>
+                            <div className={classes.contract}>
+                                <span style={{ verticalAlign: "middle" }}>
+                                    <LabelEdit
+                                        id="contract"
+                                        label="contract"
+                                        value={document.contract}
+                                        liftState={handleLiftState}
+                                        isEdit={isEdit}
+                                    />
+                                </span>
+                            </div>
                             <div className={classes.remote}>
                                 <span style={{ verticalAlign: "middle" }}>
                                     <LabelEdit
                                         id="remote"
                                         label="remote"
                                         value={document.remote}
+                                        liftState={handleLiftState}
+                                        isEdit={isEdit}
+                                    />
+                                </span>
+                            </div>
+                            <div className={classes.travel}>
+                                <span style={{ verticalAlign: "middle" }}>
+                                    <LabelEdit
+                                        id="travel"
+                                        label="travel"
+                                        value={document.travel}
                                         liftState={handleLiftState}
                                         isEdit={isEdit}
                                     />
@@ -408,7 +442,7 @@ export const BiographyView = ({ data, control, render, ...props }) => {
                                             ? <span style={{ verticalAlign: "middle" }}>
                                                 <i className={"material-icons"} style={{ verticalAlign: "middle" }}>{index === 1 ? "record_voice_over" : "_"}</i>
                                                 &nbsp;&nbsp;
-                                        </span>
+                                            </span>
                                             : <></>
                                         }
                                         <span style={{ verticalAlign: "middle" }}>
@@ -473,6 +507,80 @@ export const BiographyView = ({ data, control, render, ...props }) => {
                             {[...Array(5).keys()].map((index) => {
                                 index++;
                                 index += 5;
+                                if (document[`experience${index}`] || isEdit === true) {
+                                    return <div key={index} style={{ marginBottom: 16 }}>
+                                        <span className={classes.experience}>
+                                            <LabelEdit
+                                                id={`experience${index}`}
+                                                label={`experience${index}`}
+                                                value={document[`experience${index}`]}
+                                                liftState={handleLiftState}
+                                                isEdit={isEdit}
+                                            />
+                                        </span>
+                                        <span className={classes.experience}>
+                                            <SliderEdit
+                                                id={`experienceLevel${index}`}
+                                                label={`experienceLevel${index}`}
+                                                value={document[`experienceLevel${index}`]}
+                                                liftState={handleLiftState}
+                                                isEdit={isEdit}
+                                            />
+                                        </span>
+                                    </div>
+                                }
+                            })}
+                        </div>
+                        <div className={classes.experienceContainer}>
+                            <div style={{ marginBottom: 16 }}>
+                                <LabelEdit
+                                    id={`experienceTertiary`}
+                                    label={`experienceTertiary`}
+                                    value={document[`experienceTertiary`]}
+                                    liftState={handleLiftState}
+                                    isEdit={isEdit}
+                                />
+                            </div>
+                            {[...Array(5).keys()].map((index) => {
+                                index++;
+                                index += 10;
+                                if (document[`experience${index}`] || isEdit === true) {
+                                    return <div key={index} style={{ marginBottom: 16 }}>
+                                        <span className={classes.experience}>
+                                            <LabelEdit
+                                                id={`experience${index}`}
+                                                label={`experience${index}`}
+                                                value={document[`experience${index}`]}
+                                                liftState={handleLiftState}
+                                                isEdit={isEdit}
+                                            />
+                                        </span>
+                                        <span className={classes.experience}>
+                                            <SliderEdit
+                                                id={`experienceLevel${index}`}
+                                                label={`experienceLevel${index}`}
+                                                value={document[`experienceLevel${index}`]}
+                                                liftState={handleLiftState}
+                                                isEdit={isEdit}
+                                            />
+                                        </span>
+                                    </div>
+                                }
+                            })}
+                        </div>
+                        <div className={classes.experienceContainer}>
+                            <div style={{ marginBottom: 16 }}>
+                                <LabelEdit
+                                    id={`experienceQuaternary`}
+                                    label={`experienceQuaternary`}
+                                    value={document[`experienceQuaternary`]}
+                                    liftState={handleLiftState}
+                                    isEdit={isEdit}
+                                />
+                            </div>
+                            {[...Array(5).keys()].map((index) => {
+                                index++;
+                                index += 15;
                                 if (document[`experience${index}`] || isEdit === true) {
                                     return <div key={index} style={{ marginBottom: 16 }}>
                                         <span className={classes.experience}>
@@ -645,9 +753,10 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
         },
         tableRow: [
             { col1: { align: "left", text: "Gender" }, col2: { align: "right", text: document.gender } },
-            //{ col1: { align: "left", text: "Employment Equity" }, col2: { align: "right", text: document.equity } },
+            { col1: { align: "left", text: "Employment Equity" }, col2: { align: "right", text: document.equity } },
             { col1: { align: "left", text: "Marital Status" }, col2: { align: "right", text: document.married } },
-            //{ col1: { align: "left", text: "Drivers Licence" }, col2: { align: "right", text: document.drivers } }
+            { col1: { align: "left", text: "Drivers Licence" }, col2: { align: "right", text: document.drivers } },
+            { col1: { align: "left", text: "Citizenship" }, col2: { align: "right", text: document.citizenship } }
         ]
     };
 
@@ -661,7 +770,9 @@ export default withRouter(({ match, history, isPaper, template, ...props }) => {
         tableRow: [
             { col1: { align: "left", text: "Current Position" }, col2: { align: "right", text: document.currentPosition } },
             { col1: { align: "left", text: "Availability" }, col2: { align: "right", text: document.availability } },
-            { col1: { align: "left", text: "Willing to work remotely / contract" }, col2: { align: "right", text: document.remote } }
+            { col1: { align: "left", text: "Willing to work on Contract" }, col2: { align: "right", text: document.contract } },
+            { col1: { align: "left", text: "Willing to work Remote" }, col2: { align: "right", text: document.remote } },
+            { col1: { align: "left", text: "Willing to Travel" }, col2: { align: "right", text: document.travel } }
         ]
     };
 

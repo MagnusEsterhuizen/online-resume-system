@@ -7,14 +7,11 @@ import { withRouter } from "react-router-dom";
 //material-ui
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
 
 //charts
 import DonutChart from "./../../charts/DonutChart/DonutChart";
 
 //elements
-import LabelEdit from "./../../elements/LabelEdit/LabelEdit";
-import TextEdit from "./../../elements/TextEdit/TextEdit";
 import PaperCard from "./../../elements/PaperCard/PaperCard";
 import TableList from "./../../elements/TableList/TableList";
 import { yearOnly } from "./../../elements/DatePicker/DatePicker";
@@ -129,7 +126,7 @@ function getClasses() {
  * @param props - props extra
  * @return JSX component
  */
-export const CoverLetter = ({ data, control, render, ...props }) => {
+export const Summary = ({ data, control, render, ...props }) => {
     const { document,
         experiencePrimaryChart, experienceSecondaryChart, experienceTertiaryChart, experienceQuaternaryChart,
         experiencePrimary, experienceSecondary, experienceTertiary, experienceQuaternary,
@@ -138,89 +135,123 @@ export const CoverLetter = ({ data, control, render, ...props }) => {
 
     const classes = getClasses()
     return <>
-        <PaperCard component="article" id="CoverLetter" isPaper={isPaper}>
+        <PaperCard component="article" id="Summary" isPaper={isPaper}>
             <div className={isPaper ? classes.container : ""}>
-                <header>
-                    <Hidden xsDown>
-                        <h1 className={classes.headingMain}>
-                            <LabelEdit
-                                id="firstname"
-                                label="firstname"
-                                value={document.firstname}
+                <footer>
+                    <div style={{ width: "100%", height: 300, position: "relative" }} className={classes.quickBreakdownContainer}>
+                        <h6 className={classes.subheading}>
+                            {experiencePrimary.tableHead.col1.text}
+                        </h6>
+                        <div style={{ width: "100%", height: 300, position: "absolute" }} id="donutChart">
+                            <DonutChart
+                                chartData={experiencePrimaryChart}
+                                showLegend={true}
                             />
-                            &nbsp;
-                            {document.secondname
-                                ? <>
-                                    <LabelEdit
-                                        id="secondname"
-                                        label="secondname"
-                                        value={document.secondname}
-                                    />
-                                    &nbsp;
-                                </>
-                                : <></>
-                            }
-                            <LabelEdit
-                                id="lastname"
-                                label="lastname"
-                                value={document.lastname}
-                            />
-                            <span className={classes.imageCaption} style={{ display: "none" }} id="cv">
-                                &nbsp;-&nbsp;Curiculum Vitae
-                        </span>
-                        </h1>
-                        <h2>
-                            <LabelEdit
-                                id="coverTitle"
-                                label="coverTitle"
-                                value={document.coverTitle}
-                            />
-                        </h2>
-                    </Hidden>
-                </header>
-                <div id="page_coverletter"></div>
-                <section>
-                    <Hidden xsDown>
-                        <div className={classes.email}>
-                            <span style={{ verticalAlign: "middle" }}>
-                                <i className={`material-icons ${classes.linksIcon}`} style={{ verticalAlign: "middle" }}>email</i>
-                                &nbsp;&nbsp;
-                            </span>
-                            <span style={{ verticalAlign: "middle", position: "relative", }}>
-                                <a href={`mailto:${document.email}?subject=Interview request from: &body=Hi ${document.firstname}, we would like to request an interview with you. Regards, `} target="_blank" >
-                                    <LabelEdit
-                                        id="email"
-                                        label="email"
-                                        value={document.email}
-                                    />
-                                </a>
-                            </span>
                         </div>
-                        <div className={classes.phone}>
-                            <span style={{ verticalAlign: "middle" }}>
-                                <i className={`material-icons ${classes.linksIcon}`} style={{ verticalAlign: "middle" }}>phone</i>
-                                &nbsp;&nbsp;
-                        </span>
-                            <span style={{ verticalAlign: "middle" }}>
-                                <a className={classes.links} href={`tel:${document.phone ? document.phone.replace(/\s/g, "") : ""}`} target="_blank">
-                                    <LabelEdit
-                                        id="phone"
-                                        label="phone"
-                                        value={document.phone}
-                                    />
-                                </a>
-                            </span>
-                        </div>
-                    </Hidden>
-                    <div className={classes.description}>
-                        <TextEdit
-                            id="description"
-                            label="description"
-                            value={document.description}
-                            isFull={true}
-                        />
                     </div>
-                </section>
+                    <br />
+                    <br />
+                    <div style={{ width: "100%", height: 300, position: "relative" }} className={classes.quickBreakdownContainer}>
+                        <h6 className={classes.subheading}>
+                            {experienceSecondary.tableHead.col1.text}
+                        </h6>
+                        <div style={{ width: "100%", height: 300, position: "absolute" }} id="donutChart">
+                            <DonutChart
+                                chartData={experienceSecondaryChart}
+                                showLegend={true}
+                            />
+                        </div>
+                    </div>
+                    {/*<div style={{ width: "100%", height: 300, position: "relative" }} className={classes.quickBreakdownContainer}>
+                        <h6 className={classes.subheading}>
+                            {experienceTertiary.tableHead.col1.text}
+                        </h6>
+                        <div style={{ width: "100%", height: 300, position: "absolute" }} id="donutChart">
+                            <DonutChart
+                                chartData={experienceTertiaryChart}
+                                showLegend={true}
+                            />
+                        </div>
+                    </div>
+                    <div style={{ width: "100%", height: 300, position: "relative" }} className={classes.quickBreakdownContainer}>
+                        <h6 className={classes.subheading}>
+                            {experienceQuaternary.tableHead.col1.text}
+                        </h6>
+                        <div style={{ width: "100%", height: 300, position: "absolute" }} id="donutChart">
+                            <DonutChart
+                                chartData={experienceQuaternaryChart}
+                                showLegend={true}
+                            />
+                        </div>
+                    </div>*/}
+                    <Grid container spacing={2} justify="center" component="article">
+                        <Grid item xs={12} sm={6} className={classes.experienceOverviewContainer} component="section">
+                            <h6 className={classes.subheading}>
+                                {experiencePrimary.tableHead.col1.text}
+                            </h6>
+                            <TableList
+                                tableRow={experiencePrimary.tableRow}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} className={classes.experienceOverviewContainer} component="section">
+                            <h6 className={classes.subheading}>
+                                {experienceSecondary.tableHead.col1.text}
+                            </h6>
+                            <TableList
+                                tableRow={experienceSecondary.tableRow}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} className={classes.experienceOverviewContainer} component="section" style={{marginTop:0}}>
+                            <h6 className={classes.subheading}>
+                                {experienceTertiary.tableHead.col1.text}
+                            </h6>
+                            <TableList
+                                tableRow={experienceTertiary.tableRow}
+                            />
+                        </Grid>
+                        <Grid item xs={12} sm={6} className={classes.experienceOverviewContainer} component="section" style={{marginTop:0}}>
+                            <h6 className={classes.subheading}>
+                                {experienceQuaternary.tableHead.col1.text}
+                            </h6>
+                            <TableList
+                                tableRow={experienceQuaternary.tableRow}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={0} justify="center">
+                        <Grid item xs={12} className={classes.employmentOverviewContainer}>
+                            <h6 className={classes.subheading}>
+                                Employment History
+                            </h6>
+                            <TableList
+                                tableHead={employment.tableHead}
+                                tableRow={employment.tableRow}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={0} justify="center">
+                        <Grid item xs={12} className={classes.educationOverviewContainer}>
+                            <h6 className={classes.subheading}>
+                                Education History
+                            </h6>
+                            <TableList
+                                tableHead={education.tableHead}
+                                tableRow={education.tableRow}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={0} justify="center">
+                        <Grid item xs={12} className={classes.hobbyOverviewContainer}>
+                            <h6 className={classes.subheading}>
+                                Hobbies & Recreation
+                            </h6>
+                            <TableList
+                                //tableHead={hobby.tableHead}
+                                tableRow={hobby.tableRow}
+                            />
+                        </Grid>
+                    </Grid>
+                </footer>
             </div>
         </PaperCard>
     </>
@@ -494,7 +525,7 @@ export default withRouter(({ match, isPaper, ...props }) => {
         })()
     };
 
-    return CoverLetter({
+    return Summary({
         ...props,
         data: {
             document,

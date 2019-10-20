@@ -14,6 +14,7 @@ import AuthorizeContext from "./../../context/AuthorizeContext/AuthorizeContext"
 
 //components
 import CoverLetter from "./../../components/CoverLetter/CoverLetter";
+import Summary from "./../../components/Summary/Summary";
 import BiographyView from "./../../components/Biography/BiographyView";
 import EmploymentList from "./../../components/Employment/EmploymentList";
 import EducationList from "./../../components/Education/EducationList";
@@ -216,6 +217,23 @@ export const OnePageScroller = ({ data, control, render, ...props }) => {
                     />
                 </div>
                 <div className={classes.readMoreContainer}>
+                    <div className={classes.gutter}>
+                        <i className={"material-icons " + classes.gutterIcon}>assignment</i>
+                    </div>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                Summary
+                            </h4>
+                        </header>
+                        <Summary
+                            {...routeProps}
+                            documentId={biographyId}
+                            template="view"
+                        />
+                    </div>
+                </div>
+                <div className={classes.readMoreContainer}>
                     <div id="page_biography"></div>
                     <div className={classes.gutter}>
                         <i className={"material-icons " + classes.gutterIcon}>person</i>
@@ -303,6 +321,23 @@ export const OnePageScroller = ({ data, control, render, ...props }) => {
                         {...routeProps}
                         documentId={biographyId}
                     />
+                </div>
+                <div className={classes.readMoreContainer}>
+                    <div className={classes.gutter}>
+                        <i className={"material-icons " + classes.gutterIcon}>assignment</i>
+                    </div>
+                    <div className={classes.content}>
+                        <header>
+                            <h4 className={classes.headingMain}>
+                                Summary
+                            </h4>
+                        </header>
+                        <Summary
+                            {...routeProps}
+                            documentId={biographyId}
+                            template="view"
+                        />
+                    </div>
                 </div>
                 <div className={classes.readMoreContainer}>
                     <div id="page_biography"></div>
