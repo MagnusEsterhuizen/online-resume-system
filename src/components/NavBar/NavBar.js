@@ -217,6 +217,7 @@ export default withRouter(({ history, location, ...props }) => {
     const personal = [
         { text: "Home", to: "/", icon: "home" },
         { text: "Cover Letter", to: "/coverletter", icon: "description" },
+        { text: "Summary", to: "/summary", icon: "assignment" },
         { text: "Biography", to: "/biography", icon: "person" }
     ];
 

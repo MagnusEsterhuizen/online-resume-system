@@ -217,6 +217,7 @@ export const OnePageScroller = ({ data, control, render, ...props }) => {
                     />
                 </div>
                 <div className={classes.readMoreContainer}>
+                    <div id="page_summary"></div>
                     <div className={classes.gutter}>
                         <i className={"material-icons " + classes.gutterIcon}>assignment</i>
                     </div>
@@ -323,6 +324,7 @@ export const OnePageScroller = ({ data, control, render, ...props }) => {
                     />
                 </div>
                 <div className={classes.readMoreContainer}>
+                    <div id="page_summary"></div>
                     <div className={classes.gutter}>
                         <i className={"material-icons " + classes.gutterIcon}>assignment</i>
                     </div>
@@ -490,18 +492,19 @@ export default withRouter(({ match, history, location, biographyId, ...props }) 
     let onLoadScrollTimeout;
     useEffect(() => {
         window.isAutoScroll = true;
-        if (!match.params["page"]) {
-            match.params["page"] = "home";
+        if (!location.pathname) {
+            location.pathname = "/home";
         }
-        if (match.params["page"]) {
-            const element = window.document.querySelector(`div#page_${match.params["page"]}`);
+        location.pathname = location.pathname.substr(1, location.pathname.length)
+        if (location.pathname) {
+            const element = window.document.querySelector(`div#page_${location.pathname}`);
             function onLoadScroll(count) {
                 if (count > 0) {
                     count--;
 
                     scrollElement(element);
 
-                    let pageTitle = match.params["page"][0].toUpperCase() + match.params["page"].slice(1);
+                    let pageTitle = location.pathname[0].toUpperCase() + location.pathname.slice(1);
                     if (pageTitle === "Home") {
                         pageTitle = "Curriculum Vitae";
                     }
