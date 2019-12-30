@@ -132,6 +132,18 @@ export const EmploymentView = ({ data, control, render, ...props }) => {
                             />
                         </div>
                     }
+                    {template !== "list"
+                        ? <div className={classes.subheading + " " + classes.credentialsContainerList} id="credentialsContainer">
+                            <LabelEdit
+                                id="reasonLeaving"
+                                label="reasonLeaving"
+                                value={document.reasonLeaving}
+                                liftState={handleLiftState}
+                                isEdit={isEdit}
+                            />
+                        </div>
+                        : <></>
+                    }
                     {template === "edit"
                         ? <>
                             <span className={classes.reference}>
@@ -262,7 +274,7 @@ export const EmploymentView = ({ data, control, render, ...props }) => {
                             </div>
                             <div className={classes.listContainer}>
                                 <ul>
-                                    {[...Array(10).keys()].map((index) => {
+                                    {[...Array(20).keys()].map((index) => {
                                         index++;
                                         if (document["duty" + index] || isEdit === true) {
                                             return <li key={index} className={classes.li}>

@@ -168,13 +168,13 @@ export const EducationView = ({ data, control, render, ...props }) => {
                             isFull={isFull}
                         />
                     </div>
-                    {template !== "list" && document[`diploma1`]
+                    {template !== "list"// && document[`diploma1`]
                         ? <section id="diplomasAndCertificates">
                             <div className={classes.image}>
                                 <span className={classes.imageCaption}>Diplomas and Certificates</span>
                             </div>
                             <div className={classes.imageContainer}>
-                                {[...Array(5).keys()].map((index) => {
+                                {[...Array(20).keys()].map((index) => {
                                     index++;
                                     if (document[`diploma${index}`] || isEdit === true) {
                                         return <div key={index}>
