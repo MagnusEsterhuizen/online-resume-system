@@ -8,7 +8,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/pickers": "^3.2.1",
     "@nivo/pie": "^0.59.1",
-    "firebase": "^6.3.3",
+    "firebase": "^10.9.0",
     "moment": "^2.24.0",
     "nivo": "^0.31.0",
     "react": "^16.8.6",
